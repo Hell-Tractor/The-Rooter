@@ -10,6 +10,10 @@ public class Stem : PlantBase, IRoundable {
         return this.RoundPriority;
     }
 
+    public override StemType GetStemType() {
+        return StemType.Stem;
+    }
+
     public void OnRoundFinish() {}
 
     public void OnRoundLateFinish() {}

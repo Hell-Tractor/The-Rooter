@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -10,14 +11,12 @@ public abstract class PlantBase : Area2D, ISave {
 
     public override void _Ready() {
         Sprite sprite = this.GetNode<Sprite>("Sprite");
-        this.Width = (int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x);
+        this.Width = Math.Abs((int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x));
 
         this.Id = Count++;
     }
 
-    public virtual StemType GetStemType() {
-        return StemType.Stem;
-    }
+    public abstract StemType GetStemType();
 
     public virtual Godot.Collections.Dictionary<string, object> Save() {
         return new Godot.Collections.Dictionary<string, object>() {

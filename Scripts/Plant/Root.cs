@@ -7,6 +7,10 @@ public class Root : PlantBase {
         return this.GetAllConnectedParts().Where(part => part.GetStemType() == StemType.Leaf).Cast<Leaf>().ToList();
     }
 
+    public override StemType GetStemType() {
+        return StemType.Root;
+    }
+
     public override GC.Dictionary<string, object> Save() {
         GC.Dictionary<string, object> save = base.Save();
         save.Add("Filename", this.Filename);
