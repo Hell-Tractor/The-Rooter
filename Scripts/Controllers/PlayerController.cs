@@ -3,10 +3,13 @@ using System;
 
 public class PlayerController : Area2D {
 	private int _width;
+	private RoundManager roundManager;
 
 	public override void _Ready() {
 		Sprite sprite = this.GetNode<Sprite>("Sprite");
 		this._width = (int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x);
+
+		roundManager = this.GetNode<RoundManager>("/root/RoundManager");
 	}
 
 	public override void _Process(float delta) {
@@ -14,7 +17,11 @@ public class PlayerController : Area2D {
 
 		Timer moveTimer = this.GetNode<Timer>("MoveTimer");
 		if (moveTimer.IsStopped()) {
+			// * -------请将一回合内的检测全部放在这里-------
 			this._processMove();
+
+			// * ---------------------------------------
+			this.roundManager.OnRoundFinish();
 			moveTimer.Start();
 		}
 	}
