@@ -4,6 +4,7 @@ using Godot;
 
 public abstract class PlantBase : Area2D, ISave {
     public static int Count { get; set; } = 0;
+    [Export]
     public List<PlantBase> _next;
     public int ConnectedDirection;
     public int Width { get; private set; }
@@ -44,5 +45,10 @@ public abstract class PlantBase : Area2D, ISave {
             }
         }
         return result;
+    }
+
+    public virtual void Load(Dictionary<string, object> data) {
+        this.ConnectedDirection = (int)data["ConnectedDirection"];
+        this._next = (List<PlantBase>)data["_next"];
     }
 }

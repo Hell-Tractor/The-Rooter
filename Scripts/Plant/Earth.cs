@@ -46,4 +46,8 @@ public class Earth : Area2D, IRoundable, ISave {
             { "Fertility", this.Fertility }
         };
     }
+
+    public void Load(Dictionary<string, object> data) {
+        this.Fertility = (int)data["Fertility"];
+    }
 }

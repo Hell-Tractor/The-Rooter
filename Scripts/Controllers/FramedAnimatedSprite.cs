@@ -20,4 +20,8 @@ public class FramedAnimatedSprite : AnimatedSprite, ISave {
             { "Frame", this.Frame }
         };
     }
+
+    public void Load(Dictionary<string, object> data) {
+        this.Frame = (int)data["Frame"];
+    }
 }
