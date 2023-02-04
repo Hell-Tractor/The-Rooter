@@ -171,7 +171,7 @@ public class PlayerController : Area2D, ISave {
 			}
 		}
 
-		if(Input.IsActionPressed("crab") && getObstacle(Vector2.Zero, 1, this) > 0) {
+		if(Input.IsActionPressed("crab") && getObstacle(Vector2.Zero, 2, this) > 0) {
 			if(handType == HandStateType.unCrab){
 				if(crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)
 					handType = HandStateType.horiCrab;
@@ -193,35 +193,35 @@ public class PlayerController : Area2D, ISave {
 				isLegal = true;
 			}
 		}
-
-		if(Input.IsActionPressed("crab_left") && (crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
-			if(getCrabObstacle(Vector2.Left, 1, plants) == 0 && getCrabObstacle(Vector2.Left, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Right, 2, crabPlant as Area2D))) {
-				plants.ForEach(p => p.Position += Vector2.Left);
-				isLegal = true;
+		if(handType != HandStateType.unCrab) {
+			if(Input.IsActionPressed("crab_left") && (crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
+				if(getCrabObstacle(Vector2.Left, 1, plants) == 0 && getCrabObstacle(Vector2.Left, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Right, 2, crabPlant as Area2D))) {
+					plants.ForEach(p => p.Position += Vector2.Left);
+					isLegal = true;
+			}	
 			}
-				
-		}
+			if(Input.IsActionPressed("crab_right") && (crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
+				if(getCrabObstacle(Vector2.Right, 1, plants) == 0 && getCrabObstacle(Vector2.Right, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Left, 2, crabPlant as Area2D))) {
+					plants.ForEach(p => p.Position += Vector2.Right);
+					isLegal = true;
+				}	
+			}
 
-		if(Input.IsActionPressed("crab_right") && (crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
-			if(getCrabObstacle(Vector2.Right, 1, plants) == 0 && getCrabObstacle(Vector2.Right, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Left, 2, crabPlant as Area2D))) {
-				plants.ForEach(p => p.Position += Vector2.Right);
-				isLegal = true;
-			}	
-		}
+			if(Input.IsActionPressed("crab_up") && !(crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
+				if(getCrabObstacle(Vector2.Up, 1, plants) == 0 && getCrabObstacle(Vector2.Up, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Down, 2, crabPlant as Area2D))) {
+					plants.ForEach(p => p.Position += Vector2.Up);
+					isLegal = true;
+				}	
+			}
 
-		if(Input.IsActionPressed("crab_up") && !(crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
-			if(getCrabObstacle(Vector2.Up, 1, plants) == 0 && getCrabObstacle(Vector2.Up, 2, plants) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Down, 2, crabPlant as Area2D))) {
-				plants.ForEach(p => p.Position += Vector2.Up);
-				isLegal = true;
-			}	
+			if(Input.IsActionPressed("crab_down") && !(crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
+				if(getCrabObstacle(Vector2.Down, 1, plants) == 0 && getCrabObstacle(Vector2.Down, 2, plants.Where(p => p.GetStemType() != StemType.Root).ToList()) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Up, 2, crabPlant as Area2D))) {
+					plants.ForEach(p => p.Position += Vector2.Up);
+					isLegal = true;
+				}	
+			}
 		}
-
-		if(Input.IsActionPressed("crab_down") && !(crabPlant.ConnectedDirection == 1 || crabPlant.ConnectedDirection == 2 || crabPlant.ConnectedDirection == 3)) {
-			if(getCrabObstacle(Vector2.Down, 1, plants) == 0 && getCrabObstacle(Vector2.Down, 2, plants.Where(p => p.GetStemType() != StemType.Root).ToList()) == 0 && crabPlant._next.Any(p => p == getPlantSet(Vector2.Up, 2, crabPlant as Area2D))) {
-				plants.ForEach(p => p.Position += Vector2.Up);
-				isLegal = true;
-			}	
-		}
+		
 		
 		if(getObstacle(Vector2.Up, 2, this) == 0 && bodyType == BodyStateType.climb)
 			bodyType = BodyStateType.hold;
