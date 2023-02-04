@@ -50,6 +50,7 @@ public class Stem : Area2D, IRoundable {
                     next.RoundPriority = this.RoundPriority - 1;
                     next.ConnectedDirections = (int)this._getOppositeDirection(i);
                     this.GetParent().AddChild(next);
+                    this.ConnectedDirections |= i;
                     _next.Add(next);
                 }
             }
