@@ -1,6 +1,6 @@
 using System.Linq;
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public class Earth : Area2D, IRoundable, ISave {
     [Export(PropertyHint.Flags, "Left,Right,Up")]
@@ -11,13 +11,10 @@ public class Earth : Area2D, IRoundable, ISave {
     public bool IsInfinity = false;
     [Export(PropertyHint.Range, "0, 100")]
     public int Fertility;
-    [Export]
-	public NodePath RoundManagerPath;
 
     public override void _Ready() {
         // Add this stem to the round manager
-        RoundManager manager = this.GetNode<RoundManager>(RoundManagerPath);
-        manager.AddRoundable(this);
+        RoundManager.Instance.AddRoundable(this);
     }
 
     public int GetRoundPriority() {

@@ -1,5 +1,5 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public class FramedAnimatedSprite : AnimatedSprite, ISave {
     private int _frameCount;

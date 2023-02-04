@@ -2,8 +2,6 @@ using System.Linq;
 using Godot;
 
 public class SlotBase : Area2D, IRoundable {
-    [Export]
-    public NodePath RoundManagerPath;
     private RoundManager _roundManager;
     [Export]
     public int RoundPriority;
@@ -13,7 +11,7 @@ public class SlotBase : Area2D, IRoundable {
     protected ITrigger _trigger;
 
     public override void _Ready() {
-        _roundManager = this.GetNode<RoundManager>(RoundManagerPath);
+        this._roundManager = RoundManager.Instance;
         _roundManager.AddRoundable(this);
 
         _trigger = this.GetNode<ITrigger>(TriggerPath);

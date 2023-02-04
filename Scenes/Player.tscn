@@ -6,7 +6,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 250, 250 )
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=["Undoable"]]
+scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,5 +1,5 @@
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public class GreenSlot : SlotBase, ISave {
     protected override void OnLeafEnter(Leaf leaf) {

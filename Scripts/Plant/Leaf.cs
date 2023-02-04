@@ -1,12 +1,10 @@
 using System.Linq;
 using Godot;
-using Godot.Collections;
+using System.Collections.Generic;
 
 public class Leaf : PlantBase, IRoundable, ISave {
     [Export(PropertyHint.Range, "0, 10")]
     public int Delay;
-    [Export]
-    public NodePath RoundManagerPath;
     [Export]
     public int RoundPriority;
     private RoundManager _roundManager;
@@ -18,7 +16,7 @@ public class Leaf : PlantBase, IRoundable, ISave {
     public override void _Ready() {
         base._Ready();
 
-        _roundManager = this.GetNode<RoundManager>(RoundManagerPath);
+        this._roundManager = RoundManager.Instance;
         _roundManager.AddRoundable(this);
 
         _leftCommand = new GrowthCommand(Vector2.Left, Delay);

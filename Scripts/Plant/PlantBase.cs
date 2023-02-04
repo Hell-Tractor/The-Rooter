@@ -18,8 +18,8 @@ public abstract class PlantBase : Area2D, ISave {
 
     public abstract StemType GetStemType();
 
-    public virtual Godot.Collections.Dictionary<string, object> Save() {
-        return new Godot.Collections.Dictionary<string, object>() {
+    public virtual Dictionary<string, object> Save() {
+        return new Dictionary<string, object>() {
             { "ConnectedDirection", this.ConnectedDirection },
             { "_next", this._next }
         };
