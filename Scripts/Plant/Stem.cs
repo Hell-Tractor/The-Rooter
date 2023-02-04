@@ -13,13 +13,15 @@ public class Stem : Area2D, IRoundable {
     [Export]
     public bool isRoot;
     public bool isLeaf { get { return this._next.Any(); }}
+    [Export]
+	public NodePath RoundManagerPath;
 
     public override void _Ready() {
         Sprite sprite = this.GetNode<Sprite>("Sprite");
         this._width = (int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x);
 
         // Add this stem to the round manager
-        RoundManager manager = this.GetNode<RoundManager>("/root/RoundManager");
+        RoundManager manager = this.GetNode<RoundManager>(RoundManagerPath);
         manager.AddRoundable(this);
     }
 

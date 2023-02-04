@@ -4,12 +4,14 @@ using System;
 public class PlayerController : Area2D {
 	private int _width;
 	private RoundManager roundManager;
+	[Export]
+	public NodePath RoundManagerPath;
 
 	public override void _Ready() {
 		Sprite sprite = this.GetNode<Sprite>("Sprite");
 		this._width = (int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x);
 
-		roundManager = this.GetNode<RoundManager>("/root/RoundManager");
+		roundManager = this.GetNode<RoundManager>(RoundManagerPath);
 	}
 
 	public override void _Process(float delta) {

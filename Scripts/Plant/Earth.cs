@@ -10,10 +10,12 @@ public class Earth : Area2D, IRoundable {
     public bool IsInfinity = false;
     [Export(PropertyHint.Range, "0, 100")]
     public int Fertility;
+    [Export]
+	public NodePath RoundManagerPath;
 
     public override void _Ready() {
         // Add this stem to the round manager
-        RoundManager manager = this.GetNode<RoundManager>("/root/RoundManager");
+        RoundManager manager = this.GetNode<RoundManager>(RoundManagerPath);
         manager.AddRoundable(this);
     }
 
