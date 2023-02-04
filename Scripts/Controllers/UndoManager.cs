@@ -61,14 +61,7 @@ public class UndoManager : Node {
             GetNode(nodeData["Parent"].ToString()).AddChild(newObject);
 
             // Now we set the remaining variables.
-            foreach (KeyValuePair<string, object> entry in nodeData) {
-                string key = entry.Key.ToString();
-                GD.Print(String.Format("key: {0}, value: {1}", key, entry.Value?.ToString() ?? "null"));
-                if (key == "Filename" || key == "Parent")
-                    continue;
-                Type type = newObject.GetType();
-                type.GetField(key).SetValue(newObject, entry.Value);
-            }
+            (newObject as ISave).Load(nodeData);
         }
         this._undoStack.RemoveAt(this._undoStack.Count - 1);
         GD.Print(this._undoStack.Count);

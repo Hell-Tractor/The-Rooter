@@ -14,4 +14,6 @@ public class GreenSlot : SlotBase, ISave {
             { "Parent", this.GetParent().GetPath() }
         };
     }
+
+    public void Load(Dictionary<string, object> data) {}
 }

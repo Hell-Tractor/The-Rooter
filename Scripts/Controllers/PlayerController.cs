@@ -34,6 +34,13 @@ public class PlayerController : Area2D, ISave {
 		};
 	}
 
+	public void Load(Dictionary<string, object> data) {
+		this.Position = (Vector2)data["Position"];
+		this.bodyType = (BodyStateType)data["bodyType"];
+		this.handType = (HandStateType)data["handType"];
+		this.crabPlant = (PlantBase)data["crabPlant"];
+	}
+
 	public override void _Ready() {
 		Sprite sprite = this.GetNode<Sprite>("Sprite");
 		this._width = Mathf.Abs((int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x));

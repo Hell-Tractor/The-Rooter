@@ -132,4 +132,12 @@ public class Leaf : PlantBase, IRoundable, ISave {
         save.Add("_upCommand", _upCommand);
         return save;
     }
+
+    public override void Load(Dictionary<string, object> data) {
+        base.Load(data);
+
+        this._leftCommand = (GrowthCommand)data["_leftCommand"];
+        this._rightCommand = (GrowthCommand)data["_rightCommand"];
+        this._upCommand = (GrowthCommand)data["_upCommand"];
+    }
 }
