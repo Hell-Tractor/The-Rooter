@@ -1,3 +1,5 @@
+#！/usr/bin/env python3
+
 from string import Template
 
 resource_list = [
@@ -52,7 +54,7 @@ with open(output_filename, "w") as output_file:
             y += width
             x = 0
 
-    with open("template.tscn", "r") as template_file:
+    with open("./template.tscn", "r") as template_file:
         template = Template(template_file.read())
         output_file.write(template.substitute(ext_resource=ext_res, PlayerPositionX=player_position_x, PlayerPositionY=player_position_y, nodes=result))
 
