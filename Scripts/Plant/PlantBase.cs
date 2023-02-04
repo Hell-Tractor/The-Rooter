@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Godot;
@@ -45,6 +46,10 @@ public abstract class PlantBase : Area2D, ISave {
             }
         }
         return result;
+    }
+
+    public List<T> GetAllConnectedParts<T>() {
+        return this.GetAllConnectedParts().Where(part => part is T).Cast<T>().ToList();
     }
 
     public virtual void Load(Dictionary<string, object> data) {
