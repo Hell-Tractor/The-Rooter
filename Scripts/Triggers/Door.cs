@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
 public class Door : Area2D, ITrigger {
     [Export]
@@ -22,5 +23,13 @@ public class Door : Area2D, ITrigger {
 
     public void UnTrigger() {
         this._currentCount--;
+    }
+
+    public Dictionary<string, object> Save() {
+        return new Dictionary<string, object>() {
+            { "Filename", this.Filename },
+            { "Parent", this.GetParent().GetPath() },
+            { "_currentCount", this._currentCount }
+        };
     }
 }

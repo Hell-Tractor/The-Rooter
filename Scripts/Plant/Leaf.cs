@@ -1,6 +1,8 @@
+using System.Linq;
 using Godot;
+using Godot.Collections;
 
-public class Leaf : PlantBase, IRoundable {
+public class Leaf : PlantBase, IRoundable, ISave {
     [Export(PropertyHint.Range, "0, 10")]
     public int Delay;
     [Export]
@@ -55,8 +57,9 @@ public class Leaf : PlantBase, IRoundable {
     }
 
     private PlantBase _replaceSelfByStem() {
-        PlantBase stem = new PlantBase();
+        Stem stem = new Stem();
         stem.Position = this.Position;
+        stem.IsNew = true;
         this.GetParent().AddChild(stem);
         return stem;
     }
@@ -121,4 +124,14 @@ public class Leaf : PlantBase, IRoundable {
     }
 
     public void OnRoundStart() {}
+
+    public override Dictionary<string, object> Save() {
+        Dictionary<string, object> save = base.Save();
+        save.Add("Filename", this.Filename);
+        save.Add("Parent", this.GetParent().GetPath());
+        save.Add("_leftCommand", _leftCommand);
+        save.Add("_rightCommand", _rightCommand);
+        save.Add("_upCommand", _upCommand);
+        return save;
+    }
 }

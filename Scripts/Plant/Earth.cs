@@ -1,7 +1,8 @@
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
-public class Earth : Area2D, IRoundable {
+public class Earth : Area2D, IRoundable, ISave {
     [Export(PropertyHint.Flags, "Left,Right,Up")]
     public int GrowthCommand;
     [Export]
@@ -40,4 +41,12 @@ public class Earth : Area2D, IRoundable {
 
     public void OnRoundLateFinish() {}
     public void OnRoundStart() {}
+
+    public Dictionary<string, object> Save() {
+        return new Dictionary<string, object>() {
+            { "Filename", this.Filename },
+            { "Parent", this.GetParent().GetPath() },
+            { "Fertility", this.Fertility }
+        };
+    }
 }

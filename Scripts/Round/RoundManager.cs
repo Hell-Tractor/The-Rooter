@@ -12,6 +12,10 @@ public class RoundManager : Node {
         _roundables.Remove(roundable);
     }
 
+    public void Clear() {
+        _roundables.Clear();
+    }
+
     public void OnRoundFinish() {
         _roundables.Sort((a, b) => b.GetRoundPriority() - a.GetRoundPriority());
         _roundables.ForEach(roundable => roundable.OnRoundFinish());

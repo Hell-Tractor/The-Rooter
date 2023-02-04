@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-public class PlantBase : Area2D {
+public abstract class PlantBase : Area2D, ISave {
     public static int Count { get; private set; } = 0;
     public List<PlantBase> _next;
     public int ConnectedDirection;
@@ -17,5 +17,12 @@ public class PlantBase : Area2D {
 
     public virtual StemType GetStemType() {
         return StemType.Stem;
+    }
+
+    public virtual Godot.Collections.Dictionary<string, object> Save() {
+        return new Godot.Collections.Dictionary<string, object>() {
+            { "ConnectedDirection", this.ConnectedDirection },
+            { "_next", this._next }
+        };
     }
 }

@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Godot;
+using GC = Godot.Collections;
 
 public class Root : PlantBase {
-    [Export(PropertyHint.Flags, "Left,Right,Up")]
-    public int Direction;
-
     public List<Leaf> GetConnectedLeaves() {
         List<Leaf> result = new List<Leaf>();
         List<bool> visited = new List<bool>(Count);
@@ -27,5 +23,12 @@ public class Root : PlantBase {
             }
         }
         return result;
+    }
+
+    public override GC.Dictionary<string, object> Save() {
+        GC.Dictionary<string, object> save = base.Save();
+        save.Add("Filename", this.Filename);
+        save.Add("Parent", this.GetParent().GetPath());
+        return save;
     }
 }
