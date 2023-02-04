@@ -50,6 +50,7 @@ public class UndoManager : Node {
         foreach (Node saveNode in saveNodes)
             saveNode.QueueFree();
         this._roundManager.Clear();
+        PlantBase.Count = 0;
 
         foreach (var nodeData in this._undoStack[this._undoStack.Count - 1]) {
             // Firstly, we need to create the object and add it to the tree and set its position.
