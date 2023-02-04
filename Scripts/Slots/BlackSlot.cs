@@ -1,5 +1,5 @@
 public class BlackSlot : SlotBase {
-    protected override void OnLeafEnter(Stem leaf) {
+    protected override void OnLeafEnter(Leaf leaf) {
         leaf.QueueFree();
     }
 }

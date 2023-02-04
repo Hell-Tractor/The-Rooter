@@ -15,5 +15,7 @@ public class RoundManager : Node {
     public void OnRoundFinish() {
         _roundables.Sort((a, b) => b.GetRoundPriority() - a.GetRoundPriority());
         _roundables.ForEach(roundable => roundable.OnRoundFinish());
+        _roundables.ForEach(roundable => roundable.OnRoundLateFinish());
+        _roundables.ForEach(roundable => roundable.OnRoundStart());
     }
 }

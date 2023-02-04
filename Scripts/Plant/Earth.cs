@@ -27,14 +27,17 @@ public class Earth : Area2D, IRoundable {
         if (!this.IsInfinity && this.Fertility == 0)
             return;
         // get the stem that is overlapping this earth
-        Stem root = this.GetOverlappingAreas().OfType<Stem>().Where(stem => stem.isRoot).FirstOrDefault(null);
+        Root root = this.GetOverlappingAreas().OfType<Root>().FirstOrDefault(null);
         if (root != null) {
             // if there is a stem, pass the growth command to it
-            root.Command |= this.GrowthCommand;
+            root.GetConnectedLeaves().ForEach(leaf => leaf.ApplyCommand(this.GrowthCommand));
             if (!this.IsInfinity) {
                 // if this earth is not infinite, decrease fertility
                 this.Fertility--;
             }
         }
     }
+
+    public void OnRoundLateFinish() {}
+    public void OnRoundStart() {}
 }

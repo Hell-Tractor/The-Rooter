@@ -7,7 +7,7 @@ public class SlotBase : Area2D, IRoundable {
     private RoundManager _roundManager;
     [Export]
     public int RoundPriority;
-    private Stem _lastStem = null;
+    private Leaf _lastLeaf = null;
     [Export]
     public NodePath TriggerPath;
     protected ITrigger _trigger;
@@ -24,16 +24,19 @@ public class SlotBase : Area2D, IRoundable {
     }
 
     public void OnRoundFinish() {
-        Stem leaf = this.GetOverlappingAreas().OfType<Stem>().Where(stem => stem.isLeaf).FirstOrDefault(null);
-        if (leaf == _lastStem)
+        Leaf leaf = this.GetOverlappingAreas().OfType<Leaf>().FirstOrDefault(null);
+        if (leaf == _lastLeaf)
             return;
         if (leaf != null)
             OnLeafEnter(leaf);
         else
-            OnLeafExit(_lastStem);
-        _lastStem = leaf;
+            OnLeafExit(_lastLeaf);
+        _lastLeaf = leaf;
     }
 
-    protected virtual void OnLeafEnter(Stem leaf) {}
-    protected virtual void OnLeafExit(Stem leaf) {}
+    protected virtual void OnLeafEnter(Leaf leaf) {}
+    protected virtual void OnLeafExit(Leaf leaf) {}
+
+    public void OnRoundLateFinish() {}
+    public void OnRoundStart() {}
 }
