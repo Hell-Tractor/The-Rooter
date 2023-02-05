@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using AI.FSM;
 
 public class PlayerController : Area2D, ISave {
 	private int _width;
@@ -30,15 +31,19 @@ public class PlayerController : Area2D, ISave {
 			{ "Position", this.Position },
 			{ "bodyType", this.bodyType },
 			{ "handType", this.handType },
-			{ "crabPlant", this.crabPlant }
+			{ "crabPlant", this.crabPlant?.GetPath() }
 		};
 	}
 
 	public void Load(Dictionary<string, object> data) {
+		GD.Print(this.Position);
 		this.Position = (Vector2)data["Position"];
 		this.bodyType = (BodyStateType)data["bodyType"];
 		this.handType = (HandStateType)data["handType"];
-		this.crabPlant = (PlantBase)data["crabPlant"];
+		if(data["crabPlant"] != null)
+			this.crabPlant = this.GetNode<PlantBase>(data["crabPlant"].ToString());
+		
+		GD.Print((Vector2)data["Position"]);
 	}
 
 	public override void _Ready() {
@@ -55,6 +60,7 @@ public class PlayerController : Area2D, ISave {
 		if (moveTimer.IsStopped()) {
 			// * -------请将一回合内的检测全部放在这里-------
 			if(this._processMove()) {
+				
 				this.roundManager.OnRoundFinish();
 			}
 			moveTimer.Start();
