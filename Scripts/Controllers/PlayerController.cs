@@ -86,6 +86,8 @@ public class PlayerController : Area2D, ISave {
 		int verticalVelocity = 0;
 		Vector2 direction = Vector2.Zero;
 		List<PlantBase> plants = new List<PlantBase>();
+		if(grabPlant != null)
+			plants = grabPlant.GetAllConnectedParts();
 		if(Input.IsActionJustPressed("move_left")) {
             direction = Vector2.Left;
 			isLegal = true;
@@ -99,16 +101,15 @@ public class PlayerController : Area2D, ISave {
             direction = Vector2.Down;
 			isLegal = true;
         }else if(Input.IsActionJustPressed("grab")) {
-			if(GetSurroundingNode(Vector2.Zero, 2) != null && grabPlant == null) {
-				grabPlant = (PlantBase)GetSurroundingNode(Vector2.Zero, 2);
-				plants = grabPlant.GetAllConnectedParts();
-				isLegal = true;
-				GD.Print(grabPlant);
-				plants.ForEach(p => GD.Print(p));
-			}
 			if(grabPlant != null) {
 				grabPlant = null;
 				isLegal = true;
+			}
+			if(GetSurroundingNode(Vector2.Zero, 2) != null && grabPlant == null) {
+				grabPlant = (PlantBase)GetSurroundingNode(Vector2.Zero, 2);
+				isLegal = true;
+				GD.Print(grabPlant);
+				plants.ForEach(p => GD.Print(p));
 			}
 			GD.Print("do grab");
 		}else {
@@ -116,6 +117,7 @@ public class PlayerController : Area2D, ISave {
         }
 		if(isLegal) {
 			if(grabPlant != null) {
+				GD.Print("move plants");
 				plants.ForEach(p => {
 					GD.Print("move", p);
 					p.GlobalPosition += direction * _width;
