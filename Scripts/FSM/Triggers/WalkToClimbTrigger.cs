@@ -22,10 +22,10 @@ namespace AI.FSM
                 direction = Vector2.Up;
             }else if(Input.IsActionJustPressed("move_down")) {
                 direction = Vector2.Down;
-            }else {
-                return false;
             }
+            GD.Print(grabPlant);
             if(direction != Vector2.Zero && grabPlant != null) {
+                GD.Print("up yes");
                 if(player.GetSurroundingNode(direction * width, 1) == null) {
                     if(direction == Vector2.Up && player.GetSurroundingNode(Vector2.Up * width, 2) == null) {
                         //play hold

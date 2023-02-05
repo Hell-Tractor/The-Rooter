@@ -17,7 +17,8 @@ namespace AI.FSM
             if(player._currentState is BodyFallState) {
                 BodyFallState fallBody = player._currentState as BodyFallState;
                 if(fallBody.fallHeightCount >= 4) {
-                    player.GlobalPosition += Vector2.Down * player._width * fallBody.fallHeightCount;
+                    fallBody.fallHeightCount = 0;
+                    GD.Print("dead");
                     return true;
                 }
             }
