@@ -16,6 +16,10 @@ margin_left = -200.0
 margin_top = 60.0
 margin_right = 200.0
 margin_bottom = 160.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../ExitButton")
 text = "Start"
 
 [node name="ExitButton" type="Button" parent="."]
@@ -27,6 +31,10 @@ margin_left = -200.0
 margin_top = 210.0
 margin_right = 200.0
 margin_bottom = 310.0
+focus_neighbour_top = NodePath("../StartButton")
+focus_neighbour_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../StartButton")
 text = "Exit"
 
 [connection signal="pressed" from="StartButton" to="." method="_OnStartButtonPressed"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/SettingsUIManager.cs" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="RestartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -50.0
+margin_right = 200.0
+margin_bottom = 50.0
+text = "RESTART"
+
+[node name="ExitToSelecctionButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 200.0
+text = "EXIT TO SELECTION"
+
+[node name="ExitGameButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 250.0
+margin_right = 200.0
+margin_bottom = 350.0
+text = "EXIT TO DESKTOP"
+
+[connection signal="pressed" from="RestartButton" to="." method="_OnRestartButtonPressed"]
+[connection signal="pressed" from="ExitToSelecctionButton" to="." method="_OnExitToSelectionButtonPressed"]
+[connection signal="pressed" from="ExitGameButton" to="." method="_OnExitGameButtonPressed"]
