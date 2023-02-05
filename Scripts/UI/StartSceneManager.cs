@@ -3,7 +3,8 @@ using System;
 
 public class StartSceneManager : Control {
     public void _OnStartButtonPressed() {
-        GD.Print("Start button pressed");
+        // change current scene to stage1
+        GetTree().ChangeScene("res://Scenes/Stages/Stage1.tscn");
     }
 
     public void _OnExitButtonPressed() {

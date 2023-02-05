@@ -632,7 +632,7 @@ position = Vector2( 11776, 6656 )
 position = Vector2( 1544, 2560 )
 
 [node name="Node2D2" parent="Map" instance=ExtResource( 4 )]
-position = Vector2( 2552, 2544 )
+position = Vector2( 2552, 2557 )
 
 [node name="Area2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 10745, 4101 )

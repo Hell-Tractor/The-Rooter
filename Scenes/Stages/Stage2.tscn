@@ -1,0 +1,1224 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Earth/Earth.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Earth/DryEarth.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Round/RoundManager.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Controllers/UndoManager.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Controllers/AudioManager.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/Plant/Plant.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Plant/stem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Plant/Root.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Plant/Leaf.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Slots/GreenSlot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Triggers/Door.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Triggers/Obstacle.tscn" type="PackedScene" id=13]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1024, 4608 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="SE" type="AudioStreamPlayer2D" parent="Player"]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 1024, 4608 )
+current = true
+smoothing_enabled = true
+
+[node name="Map" type="Node" parent="."]
+
+[node name="T0" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 0 )
+
+[node name="T1" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 0 )
+
+[node name="T2" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 0 )
+
+[node name="T3" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 0 )
+
+[node name="T4" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 0 )
+
+[node name="T5" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 0 )
+
+[node name="T6" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 0 )
+
+[node name="T7" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 0 )
+
+[node name="T8" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 0 )
+
+[node name="T9" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 0 )
+
+[node name="T10" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 0 )
+
+[node name="T11" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 512 )
+
+[node name="T12" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 512 )
+
+[node name="T13" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 512 )
+
+[node name="T14" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 512 )
+
+[node name="T15" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 512 )
+
+[node name="T16" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 512 )
+
+[node name="T17" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 512 )
+
+[node name="T18" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 512 )
+
+[node name="T19" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 512 )
+
+[node name="T20" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 512 )
+
+[node name="T21" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 512 )
+
+[node name="T22" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 1024 )
+
+[node name="T23" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 1024 )
+
+[node name="T24" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 1024 )
+
+[node name="T25" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 1024 )
+
+[node name="T26" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 1024 )
+
+[node name="T27" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 1024 )
+
+[node name="T28" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 1024 )
+
+[node name="T29" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 1024 )
+
+[node name="T30" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 1024 )
+
+[node name="T31" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 1024 )
+
+[node name="T32" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 1024 )
+
+[node name="T33" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 1024 )
+
+[node name="T34" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 1536 )
+
+[node name="T35" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 1536 )
+
+[node name="T36" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 1536 )
+
+[node name="T37" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 1536 )
+
+[node name="T38" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 1536 )
+
+[node name="T39" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 1536 )
+
+[node name="T40" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 1536 )
+
+[node name="T41" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 1536 )
+
+[node name="T42" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 1536 )
+
+[node name="T43" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 1536 )
+
+[node name="T44" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 1536 )
+
+[node name="T45" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 1536 )
+
+[node name="T46" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 1536 )
+
+[node name="T47" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 2048 )
+
+[node name="T48" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 2048 )
+
+[node name="T49" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 2048 )
+
+[node name="T50" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 2048 )
+
+[node name="T51" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 2048 )
+
+[node name="T52" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 2048 )
+
+[node name="T53" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 2048 )
+
+[node name="T54" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 2048 )
+
+[node name="T55" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 2048 )
+
+[node name="T56" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 2048 )
+
+[node name="T57" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 2048 )
+
+[node name="T58" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 2048 )
+
+[node name="T59" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 2048 )
+
+[node name="T60" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 2560 )
+
+[node name="T61" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 2560 )
+
+[node name="T62" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 2560 )
+
+[node name="T63" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 2560 )
+
+[node name="T64" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 2560 )
+
+[node name="T65" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 2560 )
+
+[node name="T66" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 2560 )
+
+[node name="T67" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 2560 )
+
+[node name="T68" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 2560 )
+
+[node name="T69" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 2560 )
+
+[node name="T70" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 2560 )
+
+[node name="T71" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 2560 )
+
+[node name="T72" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 2560 )
+
+[node name="T73" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 2560 )
+
+[node name="T74" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 3072 )
+
+[node name="T75" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 3072 )
+
+[node name="T76" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 3072 )
+
+[node name="T77" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 3072 )
+
+[node name="T78" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 3072 )
+
+[node name="T79" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 3072 )
+
+[node name="T80" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 3072 )
+
+[node name="T81" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 3072 )
+
+[node name="T82" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 3072 )
+
+[node name="T83" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 3072 )
+
+[node name="T84" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 3072 )
+
+[node name="T85" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 3072 )
+
+[node name="T86" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 3072 )
+
+[node name="T87" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 3072 )
+
+[node name="T88" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 3584 )
+
+[node name="T89" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 3584 )
+
+[node name="T90" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 3584 )
+
+[node name="T91" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 3584 )
+
+[node name="T92" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 3584 )
+
+[node name="T93" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 3584 )
+
+[node name="T94" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 3584 )
+
+[node name="T95" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 3584 )
+
+[node name="T96" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 3584 )
+
+[node name="T97" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 3584 )
+
+[node name="T98" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 3584 )
+
+[node name="T99" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 3584 )
+
+[node name="T100" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 3584 )
+
+[node name="T101" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 3584 )
+
+[node name="T102" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 4096 )
+
+[node name="T103" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 4096 )
+
+[node name="T104" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 4096 )
+
+[node name="T105" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 4096 )
+
+[node name="T106" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 4096 )
+
+[node name="E0" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 11264, 4096 )
+IsInfinity = false
+Fertility = 3
+
+[node name="T107" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 4096 )
+
+[node name="T108" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12288, 4096 )
+
+[node name="T109" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 4096 )
+
+[node name="T110" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 4096 )
+
+[node name="T111" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 4096 )
+
+[node name="T112" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 4096 )
+
+[node name="T113" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 4096 )
+
+[node name="T114" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 4608 )
+
+[node name="T115" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 4608 )
+
+[node name="T116" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 4608 )
+
+[node name="T117" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 4608 )
+
+[node name="T118" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7680, 4608 )
+
+[node name="T119" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8192, 4608 )
+
+[node name="T120" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 4608 )
+
+[node name="T121" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 4608 )
+
+[node name="T122" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 4608 )
+
+[node name="T123" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 4608 )
+
+[node name="T124" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 4608 )
+
+[node name="T125" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 4608 )
+
+[node name="T126" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 4608 )
+
+[node name="T127" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12288, 4608 )
+
+[node name="T128" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 4608 )
+
+[node name="T129" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 4608 )
+
+[node name="T130" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 4608 )
+
+[node name="T131" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 5120 )
+
+[node name="T132" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 5120 )
+
+[node name="T133" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 5120 )
+
+[node name="T134" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 5120 )
+
+[node name="T135" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 5120 )
+
+[node name="T136" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 5120 )
+
+[node name="T137" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8192, 5120 )
+
+[node name="T138" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 5120 )
+
+[node name="T139" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 5120 )
+
+[node name="T140" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 5120 )
+
+[node name="T141" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 5120 )
+
+[node name="T142" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 5120 )
+
+[node name="T143" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 5120 )
+
+[node name="T144" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 5120 )
+
+[node name="T145" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12288, 5120 )
+
+[node name="T146" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 5120 )
+
+[node name="T147" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 5120 )
+
+[node name="T148" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 5632 )
+
+[node name="T149" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 512, 5632 )
+
+[node name="T150" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1024, 5632 )
+
+[node name="T151" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1536, 5632 )
+
+[node name="T152" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 5632 )
+
+[node name="T153" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 5632 )
+
+[node name="T154" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3072, 5632 )
+
+[node name="T155" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 5632 )
+
+[node name="T156" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 5632 )
+
+[node name="T157" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 5632 )
+
+[node name="T158" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 5632 )
+
+[node name="T159" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 5632 )
+
+[node name="T160" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 5632 )
+
+[node name="T161" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 5632 )
+
+[node name="T162" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 5632 )
+
+[node name="T163" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 5632 )
+
+[node name="T164" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 5632 )
+
+[node name="T165" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 5632 )
+
+[node name="T166" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 5632 )
+
+[node name="T167" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 5632 )
+
+[node name="T168" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 6144 )
+
+[node name="T169" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 512, 6144 )
+
+[node name="T170" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1024, 6144 )
+
+[node name="T171" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1536, 6144 )
+
+[node name="T172" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 6144 )
+
+[node name="T173" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 6144 )
+
+[node name="T174" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3072, 6144 )
+
+[node name="T175" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 6144 )
+
+[node name="T176" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 6144 )
+
+[node name="T177" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 6144 )
+
+[node name="T178" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 6144 )
+
+[node name="T179" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 6144 )
+
+[node name="T180" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 6144 )
+
+[node name="T181" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 6144 )
+
+[node name="T182" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 6144 )
+
+[node name="T183" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 6144 )
+
+[node name="T184" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 6144 )
+
+[node name="T185" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 6656 )
+
+[node name="T186" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 512, 6656 )
+
+[node name="T187" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1024, 6656 )
+
+[node name="T188" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1536, 6656 )
+
+[node name="T189" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 6656 )
+
+[node name="T190" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 6656 )
+
+[node name="T191" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 6656 )
+
+[node name="T192" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 6656 )
+
+[node name="T193" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 6656 )
+
+[node name="T194" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 6656 )
+
+[node name="T195" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 6656 )
+
+[node name="T196" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 6656 )
+
+[node name="T197" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 6656 )
+
+[node name="T198" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 6656 )
+
+[node name="T199" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 6656 )
+
+[node name="T200" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 7168 )
+
+[node name="T201" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 7168 )
+
+[node name="T202" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 7168 )
+
+[node name="T203" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 7168 )
+
+[node name="T204" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 7168 )
+
+[node name="T205" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 7168 )
+
+[node name="T206" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 7168 )
+
+[node name="T207" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7680, 7168 )
+
+[node name="T208" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8192, 7168 )
+
+[node name="T209" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 7168 )
+
+[node name="T210" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 7168 )
+
+[node name="T211" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 7680 )
+
+[node name="T212" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 7680 )
+
+[node name="T213" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 7680 )
+
+[node name="T214" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 7680 )
+
+[node name="T215" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 7680 )
+
+[node name="T216" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 8192 )
+
+[node name="T217" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 8192 )
+
+[node name="T218" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 8192 )
+
+[node name="T219" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3072, 8192 )
+
+[node name="T220" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 8192 )
+
+[node name="T221" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 8192 )
+
+[node name="T222" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 8192 )
+
+[node name="T223" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 8192 )
+
+[node name="T224" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 8192 )
+
+[node name="T225" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 8192 )
+
+[node name="T226" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 8192 )
+
+[node name="T227" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 8192 )
+
+[node name="T228" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 8704 )
+
+[node name="T229" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 8704 )
+
+[node name="T230" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 8704 )
+
+[node name="T231" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 8704 )
+
+[node name="T232" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 8704 )
+
+[node name="T233" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 8704 )
+
+[node name="T234" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 8704 )
+
+[node name="T235" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 8704 )
+
+[node name="T236" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 8704 )
+
+[node name="E1" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 12288, 8704 )
+IsInfinity = false
+Fertility = 3
+
+[node name="T237" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 8704 )
+
+[node name="T238" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 8704 )
+
+[node name="T239" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 8704 )
+
+[node name="T240" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 8704 )
+
+[node name="T241" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 9216 )
+
+[node name="T242" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 9216 )
+
+[node name="T243" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 9216 )
+
+[node name="T244" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 9216 )
+
+[node name="T245" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 9216 )
+
+[node name="T246" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 9216 )
+
+[node name="T247" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 9216 )
+
+[node name="T248" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 9216 )
+
+[node name="T249" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 9216 )
+
+[node name="T250" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 9216 )
+
+[node name="T251" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 9728 )
+
+[node name="T252" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 9728 )
+
+[node name="T253" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 9728 )
+
+[node name="T254" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 9728 )
+
+[node name="T255" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 9728 )
+
+[node name="T256" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 9728 )
+
+[node name="T257" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 9728 )
+
+[node name="T258" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 10240 )
+
+[node name="T259" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 10240 )
+
+[node name="T260" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 10240 )
+
+[node name="T261" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 10240 )
+
+[node name="T262" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 10240 )
+
+[node name="T263" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 10240 )
+
+[node name="T264" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 10240 )
+
+[node name="T265" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 10240 )
+
+[node name="T266" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 10752 )
+
+[node name="T267" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 10752 )
+
+[node name="T268" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 10752 )
+
+[node name="T269" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 10752 )
+
+[node name="T270" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 10752 )
+
+[node name="T271" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 10752 )
+
+[node name="T272" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 10752 )
+
+[node name="E2" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 15360, 10752 )
+IsInfinity = false
+Fertility = 2
+
+[node name="E3" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 15872, 10752 )
+IsInfinity = false
+Fertility = 2
+
+[node name="T273" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 10752 )
+
+[node name="T274" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 10752 )
+
+[node name="T275" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 10752 )
+
+[node name="T276" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 11264 )
+
+[node name="T277" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 512, 11264 )
+
+[node name="E4" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 1024, 11264 )
+IsInfinity = false
+Fertility = 3
+
+[node name="T278" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1536, 11264 )
+
+[node name="T279" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 11264 )
+
+[node name="T280" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 11264 )
+
+[node name="T281" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3072, 11264 )
+
+[node name="T282" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 11264 )
+
+[node name="T283" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 11264 )
+
+[node name="T284" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 11264 )
+
+[node name="T285" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 11264 )
+
+[node name="T286" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 11264 )
+
+[node name="T287" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 11264 )
+
+[node name="T288" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 11264 )
+
+[node name="T289" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 11264 )
+
+[node name="E5" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 7680, 11264 )
+Fertility = 3
+
+[node name="E6" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 8192, 11264 )
+Fertility = 3
+
+[node name="T290" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 11264 )
+
+[node name="T291" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 11264 )
+
+[node name="E7" parent="Map" instance=ExtResource( 2 )]
+position = Vector2( 9728, 11264 )
+IsInfinity = false
+Fertility = 3
+
+[node name="T292" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 11264 )
+
+[node name="T293" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 11264 )
+
+[node name="T294" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 11264 )
+
+[node name="T295" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 11264 )
+
+[node name="T296" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12288, 11264 )
+
+[node name="T297" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 11264 )
+
+[node name="T298" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 11264 )
+
+[node name="T299" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 11264 )
+
+[node name="T300" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 11264 )
+
+[node name="T301" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 11264 )
+
+[node name="T302" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 11264 )
+
+[node name="T303" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 11264 )
+
+[node name="T304" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 11264 )
+
+[node name="T305" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 11264 )
+
+[node name="T306" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 11264 )
+
+[node name="T307" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 11264 )
+
+[node name="T308" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 11264 )
+
+[node name="T309" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 11264 )
+
+[node name="T310" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 11264 )
+
+[node name="T311" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 0, 11776 )
+
+[node name="T312" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 512, 11776 )
+
+[node name="T313" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1024, 11776 )
+
+[node name="T314" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 1536, 11776 )
+
+[node name="T315" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2048, 11776 )
+
+[node name="T316" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 2560, 11776 )
+
+[node name="T317" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3072, 11776 )
+
+[node name="T318" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 3584, 11776 )
+
+[node name="T319" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4096, 11776 )
+
+[node name="T320" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 4608, 11776 )
+
+[node name="T321" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5120, 11776 )
+
+[node name="T322" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 5632, 11776 )
+
+[node name="T323" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6144, 11776 )
+
+[node name="T324" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 6656, 11776 )
+
+[node name="T325" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7168, 11776 )
+
+[node name="T326" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 7680, 11776 )
+
+[node name="T327" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8192, 11776 )
+
+[node name="T328" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 8704, 11776 )
+
+[node name="T329" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9216, 11776 )
+
+[node name="T330" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 9728, 11776 )
+
+[node name="T331" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10240, 11776 )
+
+[node name="T332" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 10752, 11776 )
+
+[node name="T333" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11264, 11776 )
+
+[node name="T334" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 11776, 11776 )
+
+[node name="T335" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12288, 11776 )
+
+[node name="T336" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 12800, 11776 )
+
+[node name="T337" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13312, 11776 )
+
+[node name="T338" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 13824, 11776 )
+
+[node name="T339" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14336, 11776 )
+
+[node name="T340" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 14848, 11776 )
+
+[node name="T341" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15360, 11776 )
+
+[node name="T342" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 15872, 11776 )
+
+[node name="T343" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16384, 11776 )
+
+[node name="T344" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 16896, 11776 )
+
+[node name="T345" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17408, 11776 )
+
+[node name="T346" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 17920, 11776 )
+
+[node name="T347" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18432, 11776 )
+
+[node name="T348" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 18944, 11776 )
+
+[node name="T349" parent="Map" instance=ExtResource( 3 )]
+position = Vector2( 19456, 11776 )
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Node2" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Node3" type="Node" parent="."]
+script = ExtResource( 6 )
+BGMPlayerPath = NodePath("../Player/BGM")
+SEPlayerPath = NodePath("../Player/SE")
+
+[node name="Plant" type="Node" parent="."]
+
+[node name="Node2D" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 9724, 3588 )
+
+[node name="Node2D2" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 11289, 8191 )
+
+[node name="Node2D5" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 7679, 10755 )
+
+[node name="Node2D6" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 8193, 10755 )
+
+[node name="Node2D7" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 3592, 10754 )
+
+[node name="Node2D4" type="Node2D" parent="Plant"]
+position = Vector2( 14340, 10754 )
+
+[node name="Root" parent="Plant/Node2D4" instance=ExtResource( 9 )]
+position = Vector2( 0, 512 )
+PreDefinedNext = [ NodePath("../Stem") ]
+ConnectedDirection = 4
+
+[node name="Leaf" parent="Plant/Node2D4" instance=ExtResource( 10 )]
+position = Vector2( 0, -2560 )
+PreDefinedNext = [ NodePath("../Stem5") ]
+ConnectedDirection = 8
+
+[node name="Stem" parent="Plant/Node2D4" instance=ExtResource( 8 )]
+PreDefinedNext = [ NodePath("../Root"), NodePath("../Stem2") ]
+ConnectedDirection = 12
+
+[node name="Stem2" parent="Plant/Node2D4" instance=ExtResource( 8 )]
+position = Vector2( 0, -512 )
+PreDefinedNext = [ NodePath("../Stem"), NodePath("../Stem3") ]
+ConnectedDirection = 12
+
+[node name="Stem3" parent="Plant/Node2D4" instance=ExtResource( 8 )]
+position = Vector2( 0, -1024 )
+PreDefinedNext = [ NodePath("../Stem2"), NodePath("../Stem4") ]
+ConnectedDirection = 12
+
+[node name="Stem4" parent="Plant/Node2D4" instance=ExtResource( 8 )]
+position = Vector2( 0, -1536 )
+PreDefinedNext = [ NodePath("../Stem3"), NodePath("../Stem5") ]
+ConnectedDirection = 12
+
+[node name="Stem5" parent="Plant/Node2D4" instance=ExtResource( 8 )]
+position = Vector2( 0, -2048 )
+PreDefinedNext = [ NodePath("../Stem4"), NodePath("../Leaf") ]
+ConnectedDirection = 12
+
+[node name="Node2D3" parent="Plant" instance=ExtResource( 7 )]
+position = Vector2( 18937, 8203 )
+
+[node name="Slot" type="Node" parent="."]
+
+[node name="Node2D" parent="Slot" instance=ExtResource( 11 )]
+position = Vector2( 11264, 1526 )
+TriggerPath = NodePath("../../Trigger/Area2D2")
+
+[node name="Node2D2" parent="Slot" instance=ExtResource( 11 )]
+position = Vector2( 9728, 8704 )
+TriggerPath = NodePath("../../Trigger/Area2D3")
+
+[node name="Node2D3" parent="Slot" instance=ExtResource( 11 )]
+position = Vector2( 1024, 8192 )
+TriggerPath = NodePath("../../Trigger/Area2D")
+
+[node name="Trigger" type="Node" parent="."]
+
+[node name="Area2D" parent="Trigger" instance=ExtResource( 13 )]
+position = Vector2( 2047, 7677 )
+RequireCount = 1
+
+[node name="Area2D2" parent="Trigger" instance=ExtResource( 13 )]
+position = Vector2( 6652, 5630 )
+RequireCount = 1
+
+[node name="Area2D3" parent="Trigger" instance=ExtResource( 13 )]
+position = Vector2( 7683, 9728 )
+rotation = 1.5708
+RequireCount = 1
+
+[node name="Area2D2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 3582, 7193 )
