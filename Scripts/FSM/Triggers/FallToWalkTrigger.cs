@@ -17,6 +17,9 @@ namespace AI.FSM
             if(player._currentState is BodyFallState) {
                 BodyFallState fallBody = player._currentState as BodyFallState;
                 if(fallBody.fallHeightCount < 4) {
+                    UndoManager.Instance.Save();
+                    RoundManager.Instance.OnRoundFinish();
+                    player.GlobalPosition += Vector2.Down * player._width * fallBody.fallHeightCount;
                     return true;
                 }
             }

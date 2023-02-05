@@ -29,6 +29,7 @@ namespace AI.FSM
             if(grabPlant == null) {
                 while(player.GetSurroundingNode(Vector2.Down * width * 2, 1) == null && player.GetSurroundingNode(Vector2.Down * width * 2, 2) == null) {
                     fallHeightCount++ ;
+                    player.GlobalPosition += Vector2.Down * width;
                 }
                 player.GlobalPosition += Vector2.Down * width * fallHeightCount;
             }else {
@@ -41,17 +42,12 @@ namespace AI.FSM
                         if(p.GetSurroundingNode(Vector2.Down * width, 1) == null && p.GetSurroundingNode(Vector2.Down * width, 2) == null
                         || (p.GetSurroundingNode(Vector2.Down * width, 2) != null && (plants.Any(q => q == p.GetSurroundingNode(Vector2.Down * width, 2)) 
                         || rootPlants.Any(q => q == p.GetSurroundingNode(Vector2.Down * width, 2))))) {
-                            
+                            fallHeightCount++ ;
+                            p.GlobalPosition += Vector2.Down * width;
                         }else {
-                            player.GlobalPosition += Vector2.Down * width * fallHeightCount;
                             isLegal = false;
                         }
                     });
-                    if(!isLegal) {
-                        plants.ForEach(p => p.GlobalPosition += Vector2.Down * fallHeightCount * 2);
-                        rootPlants.ForEach(p => p.GlobalPosition += Vector2.Down * fallHeightCount * 2);
-                        return;
-                    }
                 }else {
                     return;
                 }

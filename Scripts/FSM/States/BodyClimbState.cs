@@ -36,9 +36,9 @@ namespace AI.FSM
             }else if(Input.IsActionJustPressed("move_right")) {
                 direction = Vector2.Right;
             }else if(Input.IsActionJustPressed("move_up")) {
-                direction = Vector2.Left;
+                direction = Vector2.Up;
             }else if(Input.IsActionJustPressed("move_down")) {
-                direction = Vector2.Right;
+                direction = Vector2.Down;
             }
 
             bool isPlantedRoot = false;

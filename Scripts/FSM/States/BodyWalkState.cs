@@ -14,6 +14,7 @@ namespace AI.FSM
         public override void OnStateEnter(FSMBase fsm)
         {
             base.OnStateEnter(fsm);
+            
             PlayerFSM player = (fsm as PlayerFSM);
             if(player.GetOverlappingAreas().Count >= 1){
 			    player.grabPlant = player.GetOverlappingAreas()[0] as PlantBase;
@@ -36,13 +37,15 @@ namespace AI.FSM
             }else if(Input.IsActionJustPressed("move_right")) {
                 direction = Vector2.Right;
             }else if(Input.IsActionJustPressed("move_up")) {
-                direction = Vector2.Left;
+                direction = Vector2.Up;
             }else if(Input.IsActionJustPressed("move_down")) {
-                direction = Vector2.Right;
+                direction = Vector2.Down;
+            }else {
+                return;
             }
             if(direction == Vector2.Left || direction == Vector2.Right) {
                 if(grabPlant == null) {
-                    if(player.GetSurroundingNode(direction * width, 1) == null) {
+                    if(player.GetSurroundingNode((direction + Vector2.Down) * width, 1) != null) {
                     //with no plant move on horizon
                         if(player.GetSurroundingNode((direction + Vector2.Up) * width, 1) == null && player.GetSurroundingNode(Vector2.Up * width, 1) == null) {
                             UndoManager.Instance.Save();
@@ -96,7 +99,6 @@ namespace AI.FSM
                     return;
                 }
             }
-
         }
     }
 }

@@ -22,12 +22,10 @@ public class Earth : Area2D, IRoundable, ISave {
     }
 
     public void OnRoundFinish() {
-        GD.Print("Earth OnGroundLateFinish");
         if (!this.IsInfinity && this.Fertility == 0)
             return;
         // get the stem that is overlapping this earth
         Root root = this.GetOverlappingAreas().OfType<Root>().FirstOrDefault();
-        GD.Print("Earth: " + root);
         if (root != null) {
             // if there is a stem, pass the growth command to it
             root.GetConnectedLeaves().ForEach(leaf => leaf.ApplyCommand(this.GrowthCommand));
