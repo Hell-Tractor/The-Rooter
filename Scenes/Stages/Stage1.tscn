@@ -12,7 +12,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 2304 )
+position = Vector2( 512, 2050 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -24,8 +24,9 @@ update_scale = false
 [node name="BGM" type="AudioStreamPlayer2D" parent="Player"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 2304 )
+position = Vector2( 512, 2050 )
 current = true
+zoom = Vector2( 5, 5 )
 smoothing_enabled = true
 
 [node name="Map" type="Node" parent="."]

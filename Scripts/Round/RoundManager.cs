@@ -12,12 +12,10 @@ public class RoundManager : Node {
     }
 
     public void AddRoundable(IRoundable roundable) {
-        GD.Print("Add Roundable: " + roundable);
         _roundables.Add(roundable);
     }
 
     public void RemoveRoundable(IRoundable roundable) {
-        GD.Print("Remove Roundable: " + roundable);
         _roundables.Remove(roundable);
     }
 
@@ -27,12 +25,9 @@ public class RoundManager : Node {
 
     public void OnRoundFinish() {
         List<IRoundable> roundables = new List<IRoundable>(_roundables);
-        GD.Print("To Round Finish: " + roundables.Count);
         roundables.Sort((a, b) => b.GetRoundPriority() - a.GetRoundPriority());
         roundables.ForEach(roundable => roundable.OnRoundFinish());
-        GD.Print("To Round Late Finish: " + roundables.Count);
         roundables.ForEach(roundable => roundable.OnRoundLateFinish());
-        GD.Print("To Round Start: " + roundables.Count);
         roundables.ForEach(roundable => roundable.OnRoundStart());
     }
 }

@@ -1,7 +1,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
-
+using AI.FSM;
 public class Door : Area2D, ITrigger {
     [Export]
     public int RequireCount;
@@ -11,7 +11,7 @@ public class Door : Area2D, ITrigger {
         base._Process(delta);
 
         if (this._currentCount == RequireCount) {
-            if (this.GetOverlappingAreas().OfType<PlayerController>().Any()) {
+            if (this.GetOverlappingAreas().OfType<PlayerFSM>().Any()) {
                 // * stage clear
             }
         }

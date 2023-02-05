@@ -21,19 +21,17 @@ public class FSMBase : Area2D {
     }
     protected void loadDefaultState() {
         // 加载默认状态
+        GD.Print(_states);
         _currentState = _defaultState = _states.Find(s => s.StateID == defaultStateID);
         _currentState.OnStateEnter(this);
-        GD.Print(_currentState);
     }
     public override void _Ready() {
-        GD.Print("what");
         init();
         setUpFSM();
         loadDefaultState();
     }
     public override void _Process(float delta) {
-        // 更新状态
-        GD.Print(_currentState);
+        // // 更新状态
         _currentState.Reason(this);
         _currentState.OnStateStay(this);
     }

@@ -19,9 +19,9 @@ namespace AI.FSM
             PlantBase grabPlant = player.grabPlant;
             //Vector2 position = player.GlobalPosition;
             if(Input.IsActionJustPressed("move_up")) {
-                direction = Vector2.Left;
+                direction = Vector2.Up;
             }else if(Input.IsActionJustPressed("move_down")) {
-                direction = Vector2.Right;
+                direction = Vector2.Down;
             }else {
                 return false;
             }
