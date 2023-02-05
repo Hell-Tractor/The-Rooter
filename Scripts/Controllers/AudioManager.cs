@@ -9,7 +9,7 @@ public class AudioManager : Node2D {
     public NodePath SEPlayerPath;
     public AudioStreamPlayer2D SEPlayer { get; private set; }
 
-    public override void _Ready() {
+    public override void _EnterTree() {
         if (Instance != null)
             throw new System.Exception("Duplicate AudioManager exists.");
         Instance = this;
