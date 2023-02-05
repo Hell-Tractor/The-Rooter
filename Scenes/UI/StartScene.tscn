@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/UI/StartSceneManager.cs" type="Script" id=1]
 [ext_resource path="res://Arts/Title/background.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Arts/Title/exit.png" type="Texture" id=6]
 [ext_resource path="res://Arts/Title/settings.png" type="Texture" id=7]
 [ext_resource path="res://Arts/Title/settings-light.png" type="Texture" id=8]
+[ext_resource path="res://Arts/Title/title.png" type="Texture" id=9]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -61,6 +62,13 @@ margin_right = -830.0
 margin_bottom = 435.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+margin_left = 894.0
+margin_top = 650.0
+margin_right = 2940.0
+margin_bottom = 1053.0
+texture = ExtResource( 9 )
 
 [connection signal="pressed" from="TextureRect/StartButton" to="." method="_OnStartButtonPressed"]
 [connection signal="pressed" from="TextureRect/ExitButton" to="." method="_OnExitButtonPressed"]
