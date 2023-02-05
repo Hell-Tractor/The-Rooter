@@ -69,7 +69,7 @@ public abstract class PlantBase : Area2D, ISave, IRoundable {
                 return null;
             else
                 return result["collider"] as Area2D;
-    } 
+    }
     public virtual void Load(Dictionary<string, object> data) {
         this.ConnectedDirection = (int)data["ConnectedDirection"];
         this._next = (List<PlantBase>)data["_next"];

@@ -159,11 +159,11 @@ public class Leaf : PlantBase, IRoundable, ISave {
     }
 
     private System.Object _checkOverlap(Vector2 position) {
-        // use raycast to check if there is a stem at the position
-        var result = this.GetWorld2d().DirectSpaceState.IntersectPoint(position, 1, null, this.CollisionLayer, false, true);
-        if (result.Count == 0)
+        var result = this.GetWorld2d().DirectSpaceState.IntersectRay(Position, Position, null, 3, false ,true);
+        if(result.Count == 0)
             return null;
-        return ((Godot.Collections.Dictionary)result[0])["collider"];
+        else
+            return result["collider"] as Area2D;
     }
 
     private PlantBase _getPlantAt(Vector2 position) {

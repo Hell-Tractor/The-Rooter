@@ -22,7 +22,7 @@ public class SlotBase : Area2D, IRoundable {
     }
 
     public void OnRoundFinish() {
-        Leaf leaf = this.GetOverlappingAreas().OfType<Leaf>().FirstOrDefault(null);
+        Leaf leaf = this.GetOverlappingAreas()?.OfType<Leaf>()?.FirstOrDefault();
         if (leaf == _lastLeaf)
             return;
         if (leaf != null)
