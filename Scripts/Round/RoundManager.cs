@@ -26,7 +26,6 @@ public class RoundManager : Node {
     }
 
     public void OnRoundFinish() {
-        UndoManager.Instance.Save();
         List<IRoundable> roundables = new List<IRoundable>(_roundables);
         GD.Print("To Round Finish: " + roundables.Count);
         roundables.Sort((a, b) => b.GetRoundPriority() - a.GetRoundPriority());

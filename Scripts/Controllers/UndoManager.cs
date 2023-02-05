@@ -54,6 +54,7 @@ public class UndoManager : Node {
         RoundManager.Instance.Clear();
         PlantBase.Count = 0;
         GD.Print(this._undoStack.Count);
+
         foreach (var nodeData in this._undoStack[this._undoStack.Count - 1]) {
             // Firstly, we need to create the object and add it to the tree and set its position.
             var newObjectScene = (PackedScene)ResourceLoader.Load(nodeData["Filename"].ToString());
