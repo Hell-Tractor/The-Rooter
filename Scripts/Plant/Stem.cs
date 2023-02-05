@@ -2,24 +2,8 @@ using Godot;
 using System.Collections.Generic;
 
 public class Stem : PlantBase, IRoundable {
-    [Export]
-    public int RoundPriority;
-    public bool IsNew = false;
-
-    public int GetRoundPriority() {
-        return this.RoundPriority;
-    }
-
     public override StemType GetStemType() {
         return StemType.Stem;
-    }
-
-    public void OnRoundFinish() {}
-
-    public void OnRoundLateFinish() {}
-
-    public void OnRoundStart() {
-        this.IsNew = false;
     }
 
     public override Dictionary<string, object> Save() {
