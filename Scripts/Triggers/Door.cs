@@ -12,7 +12,7 @@ public class Door : Area2D, ITrigger {
 
         if (this._currentCount == RequireCount) {
             if (this.GetOverlappingAreas().OfType<PlayerFSM>().Any()) {
-                // * stage clear
+                GetTree().ChangeScene("res://Scenes/Stages/Stage2.tscn");
             }
         }
     }
