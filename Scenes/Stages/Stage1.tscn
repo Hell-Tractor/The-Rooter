@@ -16,6 +16,7 @@
 [ext_resource path="res://Arts/StageBg.png" type="Texture" id=14]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( -1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1024, 4608 )

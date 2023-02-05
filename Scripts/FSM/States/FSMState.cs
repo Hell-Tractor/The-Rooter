@@ -49,7 +49,7 @@ public abstract class FSMState {
         }
     }
     
-    public virtual void OnStateEnter(FSMBase fsm) {GD.Print(this.StateID);}
+    public virtual void OnStateEnter(FSMBase fsm) {}
     public virtual void OnStateStay(FSMBase fsm) {}
     public virtual void OnStateExit(FSMBase fsm) {}
     

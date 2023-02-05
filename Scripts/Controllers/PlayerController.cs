@@ -59,7 +59,7 @@ public class PlayerController : Area2D, ISave {
 		Timer moveTimer = this.GetNode<Timer>("MoveTimer");
 		/*
 		if (moveTimer.IsStopped()) {
-			// * -------请将一回合内的检测全部放在这里-------
+			// * -------on Round-------
 			if(this._processMove()) {
 				
 				this.roundManager.OnRoundFinish();
@@ -85,6 +85,7 @@ public class PlayerController : Area2D, ISave {
 		int horizontalVelocity = 0;
 		int verticalVelocity = 0;
 		Vector2 direction = Vector2.Zero;
+		Vector2 plantDirection = Vector2.Zero;
 		List<PlantBase> plants = new List<PlantBase>();
 		if(grabPlant != null)
 			plants = grabPlant.GetAllConnectedParts();
@@ -112,10 +113,22 @@ public class PlayerController : Area2D, ISave {
 				plants.ForEach(p => GD.Print(p));
 			}
 			GD.Print("do grab");
-		}else {
+		}else if(Input.IsActionJustPressed("grab_left")) {
+            plantDirection = Vector2.Left;
+			isLegal = true;
+        }else if(Input.IsActionJustPressed("grab_right")) {
+            plantDirection = Vector2.Right;
+			isLegal = true;
+        }else if(Input.IsActionJustPressed("grab_up")) {
+            plantDirection = Vector2.Up;
+			isLegal = true;
+        }else if(Input.IsActionJustPressed("grab_down")) {
+            plantDirection = Vector2.Down;
+			isLegal = true;
+        }else {
             return false;
         }
-		if(isLegal) {
+		if(isLegal && direction != Vector2.Zero) {
 			if(grabPlant != null) {
 				GD.Print("move plants");
 				plants.ForEach(p => {
@@ -124,6 +137,15 @@ public class PlayerController : Area2D, ISave {
 				});
 			}
 			Position += direction * _width;
+		}
+		if(isLegal && plantDirection != Vector2.Zero) {
+			if(grabPlant != null) {
+				GD.Print("move plants");
+				plants.ForEach(p => {
+					GD.Print("move", p);
+					p.GlobalPosition += plantDirection * _width;
+				});
+			}
 		}
 		return isLegal;
 	}

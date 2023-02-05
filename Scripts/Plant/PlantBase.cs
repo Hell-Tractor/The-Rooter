@@ -46,6 +46,7 @@ public abstract class PlantBase : Area2D, ISave, IRoundable {
         }
         Queue<PlantBase> q = new Queue<PlantBase>();
         visited[this.Id] = true;
+        result.Add(this);
         for (q.Enqueue(this); q.Count > 0;) {
             PlantBase u = q.Dequeue();
             GD.Print(u.Name);
@@ -64,7 +65,8 @@ public abstract class PlantBase : Area2D, ISave, IRoundable {
         return this.GetAllConnectedParts().Where(part => part is T).Cast<T>().ToList();
     }
     public Area2D GetSurroundingNode(Vector2 direction, uint layer) {
-        var result = this.GetWorld2d().DirectSpaceState.IntersectRay(GlobalPosition + direction, GlobalPosition + direction, null, layer, false ,true);
+        Vector2 endPoint = new Vector2(GlobalPosition.x + direction.x + 1, GlobalPosition.y + direction.y + 1);
+        var result = this.GetWorld2d().DirectSpaceState.IntersectRay(GlobalPosition + direction, endPoint, null, layer, false ,true);
             if(result.Count == 0)
                 return null;
             else

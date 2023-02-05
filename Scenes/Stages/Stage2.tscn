@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Controllers/UndoManager.cs" type="Script" id=8]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( -1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 2050 )
@@ -472,6 +473,7 @@ position = Vector2( 6656, 5632 )
 
 [node name="T143" parent="Map" instance=ExtResource( 3 )]
 position = Vector2( 8704, 5632 )
+scale = Vector2( 1, 0.994512 )
 
 [node name="T144" parent="Map" instance=ExtResource( 3 )]
 position = Vector2( 9216, 5632 )

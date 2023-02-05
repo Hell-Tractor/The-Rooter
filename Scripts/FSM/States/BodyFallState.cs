@@ -34,7 +34,6 @@ namespace AI.FSM
                     player.GlobalPosition += Vector2.Down * width;
                     GD.Print(player.GlobalPosition);
                 }
-                player.GlobalPosition += Vector2.Down * width * fallHeightCount;
             }else {
                 List<Root> rootPlants = grabPlant.GetAllConnectedParts<Root>();
                 List<PlantBase> plants = grabPlant.GetAllConnectedParts();
@@ -51,6 +50,7 @@ namespace AI.FSM
                             isLegal = false;
                         }
                     });
+                    player.GlobalPosition += Vector2.Down * width;
                 }else {
                     return;
                 }

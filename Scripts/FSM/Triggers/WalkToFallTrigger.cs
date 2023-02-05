@@ -18,7 +18,7 @@ namespace AI.FSM
             int width = player._width;
             PlantBase grabPlant = player.grabPlant;
             //Vector2 position = player.GlobalPosition;
-            if(player.GetSurroundingNode(Vector2.Down * 2 * width, 2) == null) {
+            if(player.GetSurroundingNode(Vector2.Down * 2 * width, 2) == null && player.GetSurroundingNode(Vector2.Down * 2 * width, 1) == null) {
                 return true;
             }else {
                 return false;

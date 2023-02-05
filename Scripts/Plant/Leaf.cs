@@ -143,11 +143,11 @@ public class Leaf : PlantBase, IRoundable, ISave {
         if (this._isUpdated)
             this.self = this._replaceSelfByStem();
 
-        if (l != null)
+        if (l != null && this.self != null)
             _connect(this.self, l, Vector2.Left);
-        if (r != null)
+        if (r != null && this.self != null)
             _connect(this.self, r, Vector2.Right);
-        if (u != null)
+        if (u != null && this.self != null)
             _connect(this.self, u, Vector2.Up);
     }
 
