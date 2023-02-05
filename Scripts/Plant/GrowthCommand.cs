@@ -4,8 +4,14 @@ using System.Collections.Generic;
 public class GrowthCommand {
     public Vector2 Direction { get; private set; }
     private Queue<bool> _commandQueue;
+    private int _delay;
+
     public bool Command {
-        get { return _commandQueue.Dequeue(); }
+        get {
+            if (_commandQueue.Count <= _delay)
+                _commandQueue.Enqueue(false);
+            return _commandQueue.Dequeue();
+        }
         set { _commandQueue.Enqueue(value); }
     }
 
@@ -16,5 +22,7 @@ public class GrowthCommand {
         for (int i = 0; i < delay; i++) {
             _commandQueue.Enqueue(false);
         }
+
+        this._delay = delay;
     }
 }

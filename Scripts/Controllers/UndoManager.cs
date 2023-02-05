@@ -8,7 +8,7 @@ public class UndoManager : Node {
     private List<List<Dictionary<string, object>>> _undoStack = new List<List<Dictionary<string, object>>>();
     public static UndoManager Instance { get; private set; } = null;
 
-    public override void _Ready() {
+    public override void _EnterTree() {
         if (Instance != null)
             throw new Exception("Duplicate UndoManagerExists.");
         Instance = this;

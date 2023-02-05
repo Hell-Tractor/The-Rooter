@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 using System.Collections.Generic;
@@ -5,10 +6,13 @@ using System.Collections.Generic;
 public class Leaf : PlantBase, IRoundable, ISave {
     [Export(PropertyHint.Range, "0, 10")]
     public int Delay;
+    [Export(PropertyHint.File, "*.tscn")]
+    public string StemPath;
     private GrowthCommand _leftCommand;
     private GrowthCommand _rightCommand;
     private GrowthCommand _upCommand;
     private PlantBase self = null;
+    private bool _isUpdated = false;
 
     public override void _Ready() {
         base._Ready();
@@ -19,41 +23,51 @@ public class Leaf : PlantBase, IRoundable, ISave {
     }
 
     public void ApplyCommand(int directions) {
-        if ((directions & BitDirection.Left) != 0)
-            _leftCommand.Command = true;
-        if ((directions & BitDirection.Right) != 0)
-            _rightCommand.Command = true;
-        if ((directions & BitDirection.Up) != 0)
-            _upCommand.Command = true;
+        GD.Print("Apply command " + directions);
+        _leftCommand.Command = ((directions & BitDirection.Left) != 0);
+        _rightCommand.Command = ((directions & BitDirection.Right) != 0);
+        _upCommand.Command = ((directions & BitDirection.Up) != 0);
     }
 
     public override StemType GetStemType() {
         return StemType.Leaf;
     }
 
-    private Leaf _createLeafAt(Vector2 direction, PlantBase from) {
-        Vector2 position = this.Position + direction * Width;
+    private Leaf _createLeafAt(Vector2 direction) {
+        Vector2 position = this.GlobalPosition + direction * Width;
+        // GD.Print("Width: " + Width);
+        // GD.Print("Create leaf at " + direction + " " + position);
 
         // check if there is already a stem at that position
         System.Object overlap = this._checkOverlap(position);
+        // GD.Print("Overlap: " + (overlap as Area2D)?.Name ?? "null");
         if (overlap != null)
             return null;
 
         // create new leaf
-        Leaf newLeaf = (Leaf)this.Duplicate();
-        newLeaf.Position = position;
-        newLeaf._next = new List<PlantBase>();
-        newLeaf.RoundPriority = this.RoundPriority;
-        newLeaf.ConnectedDirection = BitDirection.FromVector2(-direction);
+        Leaf newLeaf = (Leaf)this.Duplicate(7);
         this.GetParent().AddChild(newLeaf);
+        newLeaf.GlobalPosition = position;
+        newLeaf._leftCommand = this._leftCommand;
+        newLeaf._rightCommand = this._rightCommand;
+        newLeaf._upCommand = this._upCommand;
+        // GD.Print("New leaf position: " + newLeaf.GlobalPosition);
+        newLeaf._next = new List<PlantBase>();
+        newLeaf.ConnectedDirection = 0;
         return newLeaf;
     }
 
     private PlantBase _replaceSelfByStem() {
-        Stem stem = new Stem();
+        Stem stem = GD.Load<PackedScene>(this.StemPath).Instance<Stem>();
         stem.Position = this.Position;
         stem.IsNew = true;
+        stem._next = this._next;
+        this._next[0]._next.Add(stem);
+        stem.ConnectedDirection = this.ConnectedDirection;
+        // GD.Print("Init stem connection: " + stem.ConnectedDirection);
         this.GetParent().AddChild(stem);
+        this._next[0]._next.Remove(this);
+        RoundManager.Instance.RemoveRoundable(this);
         return stem;
     }
 
@@ -62,18 +76,23 @@ public class Leaf : PlantBase, IRoundable, ISave {
         this._findStemOnDir(Vector2.Right, stem);
         this._findStemOnDir(Vector2.Up, stem);
         this._findStemOnDir(Vector2.Down, stem);
+        // GD.Print("Connected direction: " + stem.ConnectedDirection);
     }
 
     private void _findStemOnDir(Vector2 direction, PlantBase stem) {
-        Vector2 position = this.Position + direction * Width;
+        Vector2 position = stem.GlobalPosition + direction * Width;
 
         System.Object overlap = this._checkOverlap(position);
-        if (overlap == null)
+        if (overlap == null) {
+            // GD.Print("No overlap at " + direction + position);
             return;
+        }
 
-        Stem other = overlap as Stem;
+        PlantBase other = overlap as PlantBase;
+        // GD.Print("Found plantbase: " + other + " is new: " + other?.IsNew);
         if (other == null || !other.IsNew)
             return;
+        // GD.Print("Connected to " + other.GetStemType() + " at " + direction + position);
 
         stem.ConnectedDirection |= BitDirection.FromVector2(direction);
         other.ConnectedDirection |= BitDirection.FromVector2(-direction);
@@ -84,32 +103,53 @@ public class Leaf : PlantBase, IRoundable, ISave {
             other._next.Add(stem);
     }
 
+    private static void _connect(PlantBase from, PlantBase to, Vector2 direction) {
+        from._next.Add(to);
+        to._next.Add(from);
+        from.ConnectedDirection |= BitDirection.FromVector2(direction);
+        to.ConnectedDirection |= BitDirection.FromVector2(-direction);
+    }
+
     public override void OnRoundFinish() {
         bool left = _leftCommand.Command;
         bool right = _rightCommand.Command;
         bool up = _upCommand.Command;
+        // GD.Print("Leaf command: " + left + " " + right + " " + up);
+
+        PlantBase l = null, r = null, u = null;
 
         if (left)
-            _createLeafAt(Vector2.Left, this);
+            left &= (l = _createLeafAt(Vector2.Left)) != null;
         if (right)
-            _createLeafAt(Vector2.Right, this);
+            right &= (r = _createLeafAt(Vector2.Right)) != null;
         if (up)
-            _createLeafAt(Vector2.Up, this);
+            up &= (u = _createLeafAt(Vector2.Up)) != null;
+        this._isUpdated = left || right || up;
 
-        this.self = this._replaceSelfByStem();
+        if (this._isUpdated)
+            this.self = this._replaceSelfByStem();
+
+        if (l != null)
+            _connect(this.self, l, Vector2.Left);
+        if (r != null)
+            _connect(this.self, r, Vector2.Right);
+        if (u != null)
+            _connect(this.self, u, Vector2.Up);
     }
 
     public override void OnRoundLateFinish() {
+        if (!this._isUpdated)
+            return;
         _findNearbyStem(this.self);
         this.QueueFree();
     }
 
     private System.Object _checkOverlap(Vector2 position) {
         // use raycast to check if there is a stem at the position
-        var result = this.GetWorld2d().DirectSpaceState.IntersectRay(position, position, null, this.CollisionLayer, false, true);
+        var result = this.GetWorld2d().DirectSpaceState.IntersectPoint(position, 1, null, this.CollisionLayer, false, true);
         if (result.Count == 0)
             return null;
-        return result["collider"];
+        return ((Godot.Collections.Dictionary)result[0])["collider"];
     }
 
     public override Dictionary<string, object> Save() {

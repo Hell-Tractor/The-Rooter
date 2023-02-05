@@ -6,7 +6,9 @@ using Godot;
 public abstract class PlantBase : Area2D, ISave, IRoundable {
     public static int Count { get; set; } = 0;
     [Export]
-    public List<PlantBase> _next;
+    public List<NodePath> PreDefinedNext = new List<NodePath>();
+    public List<PlantBase> _next = new List<PlantBase>();
+    [Export(PropertyHint.Flags, "Left,Right,Up,Down")]
     public int ConnectedDirection;
     public int Width { get; private set; }
     public int Id { get; private set; }
@@ -20,6 +22,11 @@ public abstract class PlantBase : Area2D, ISave, IRoundable {
 
         this.Id = Count++;
         RoundManager.Instance.AddRoundable(this);
+
+        foreach (NodePath path in this.PreDefinedNext) {
+            PlantBase next = this.GetNode<PlantBase>(path);
+            this._next.Add(next);
+        }
     }
 
     public abstract StemType GetStemType();
@@ -41,6 +48,7 @@ public abstract class PlantBase : Area2D, ISave, IRoundable {
         visited[this.Id] = true;
         for (q.Enqueue(this); q.Count > 0;) {
             PlantBase u = q.Dequeue();
+            GD.Print(u.Name);
             foreach (PlantBase v in u._next) {
                 if (!visited[v.Id]) {
                     visited[v.Id] = true;
