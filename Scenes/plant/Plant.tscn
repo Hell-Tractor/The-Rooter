@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Plant/Leaf.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Plant/Root.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Plant/stem.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Root" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 512 )
-PreDefinedNext = [ NodePath("../Leaf") ]
+PreDefinedNext = [ NodePath("../Stem") ]
 ConnectedDirection = 4
 
 [node name="Leaf" parent="." instance=ExtResource( 1 )]
-PreDefinedNext = [ NodePath("../Root") ]
+position = Vector2( 0, -512 )
+PreDefinedNext = [ NodePath("../Stem") ]
 ConnectedDirection = 8
+
+[node name="Stem" parent="." instance=ExtResource( 3 )]
+PreDefinedNext = [ NodePath("../Root"), NodePath("../Leaf") ]
+ConnectedDirection = 12

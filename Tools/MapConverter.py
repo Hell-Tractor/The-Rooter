@@ -16,6 +16,13 @@ resource_list = [
         "id": 2,
         "char": "E",
         "count": 0
+    },
+    {
+        "path": "res://Scenes/Earth/DryEarth.tscn",
+        "type": "PackedScene",
+        "id": 3,
+        "char": "T",
+        "count": 0
     }
 ]
 
