@@ -33,7 +33,7 @@ public class Leaf : PlantBase, IRoundable, ISave {
         return StemType.Leaf;
     }
 
-    private Leaf _createLeafAt(Vector2 direction) {
+    private PlantBase _createLeafAt(Vector2 direction) {
         Vector2 position = this.GlobalPosition + direction * Width;
         // GD.Print("Width: " + Width);
         // GD.Print("Create leaf at " + direction + " " + position);
@@ -43,6 +43,19 @@ public class Leaf : PlantBase, IRoundable, ISave {
         // GD.Print("Overlap: " + (overlap as Area2D)?.Name ?? "null");
         if (overlap != null)
             return null;
+
+        Leaf leaf = this._getPlantAt(position) as Leaf;
+        if (leaf != null && leaf.IsNew) {
+            Stem stem = GD.Load<PackedScene>(this.StemPath).Instance<Stem>();
+            stem.Position = leaf.Position;
+            stem.IsNew = true;
+            this.GetParent().AddChild(stem);
+
+            leaf.QueueFree();
+            leaf._next[0]._next.Remove(leaf);
+            RoundManager.Instance.RemoveRoundable(leaf);
+            return stem;
+        }
 
         // create new leaf
         Leaf newLeaf = (Leaf)this.Duplicate(7);
@@ -54,6 +67,7 @@ public class Leaf : PlantBase, IRoundable, ISave {
         // GD.Print("New leaf position: " + newLeaf.GlobalPosition);
         newLeaf._next = new List<PlantBase>();
         newLeaf.ConnectedDirection = 0;
+        newLeaf.IsNew = true;
         return newLeaf;
     }
 
@@ -150,6 +164,14 @@ public class Leaf : PlantBase, IRoundable, ISave {
         if (result.Count == 0)
             return null;
         return ((Godot.Collections.Dictionary)result[0])["collider"];
+    }
+
+    private PlantBase _getPlantAt(Vector2 position) {
+        foreach (PlantBase plant in GetTree().GetNodesInGroup("Plant")) {
+            if (plant.GlobalPosition.DistanceTo(position) < Width / 2)
+                return plant;
+        }
+        return null;
     }
 
     public override Dictionary<string, object> Save() {

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 256 )
 
-[node name="Stem" type="Area2D"]
+[node name="Stem" type="Area2D" groups=["Plant"]]
 collision_layer = 2
 script = ExtResource( 2 )
 
