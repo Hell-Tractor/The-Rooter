@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/石门开启（小、轻）.wav-5cd316110bd26009e106eb384300851b.sample"
+
+[deps]
+
+source_file="res://Arts/SE/石门开启（小、轻）.wav"
+dest_files=[ "res://.import/石门开启（小、轻）.wav-5cd316110bd26009e106eb384300851b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
