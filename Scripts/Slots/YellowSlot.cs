@@ -1,9 +1,9 @@
 public class YellowSlot : SlotBase {
     protected override void OnLeafEnter(Leaf leaf) {
-        this._trigger.Trigger();
+        this._trigger?.Trigger();
     }
 
     protected override void OnLeafExit(Leaf leaf) {
-        this._trigger.UnTrigger();
+        this._trigger?.UnTrigger();
     }
 }

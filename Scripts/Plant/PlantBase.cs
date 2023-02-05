@@ -3,19 +3,23 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public abstract class PlantBase : Area2D, ISave {
+public abstract class PlantBase : Area2D, ISave, IRoundable {
     public static int Count { get; set; } = 0;
     [Export]
     public List<PlantBase> _next;
     public int ConnectedDirection;
     public int Width { get; private set; }
     public int Id { get; private set; }
+    [Export]
+    public int RoundPriority;
+    public bool IsNew = false;
 
     public override void _Ready() {
         Sprite sprite = this.GetNode<Sprite>("Sprite");
         this.Width = Math.Abs((int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x));
 
         this.Id = Count++;
+        RoundManager.Instance.AddRoundable(this);
     }
 
     public abstract StemType GetStemType();
@@ -61,5 +65,14 @@ public abstract class PlantBase : Area2D, ISave {
     public virtual void Load(Dictionary<string, object> data) {
         this.ConnectedDirection = (int)data["ConnectedDirection"];
         this._next = (List<PlantBase>)data["_next"];
+    }
+
+    public virtual void OnRoundStart() {
+        this.IsNew = false;
+    }
+    public virtual void OnRoundFinish() {}
+    public virtual void OnRoundLateFinish() {}
+    public int GetRoundPriority() {
+        return this.RoundPriority;
     }
 }

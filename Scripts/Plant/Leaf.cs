@@ -5,9 +5,6 @@ using System.Collections.Generic;
 public class Leaf : PlantBase, IRoundable, ISave {
     [Export(PropertyHint.Range, "0, 10")]
     public int Delay;
-    [Export]
-    public int RoundPriority;
-    private RoundManager _roundManager;
     private GrowthCommand _leftCommand;
     private GrowthCommand _rightCommand;
     private GrowthCommand _upCommand;
@@ -15,9 +12,6 @@ public class Leaf : PlantBase, IRoundable, ISave {
 
     public override void _Ready() {
         base._Ready();
-
-        this._roundManager = RoundManager.Instance;
-        _roundManager.AddRoundable(this);
 
         _leftCommand = new GrowthCommand(Vector2.Left, Delay);
         _rightCommand = new GrowthCommand(Vector2.Right, Delay);
@@ -48,6 +42,7 @@ public class Leaf : PlantBase, IRoundable, ISave {
         // create new leaf
         Leaf newLeaf = (Leaf)this.Duplicate();
         newLeaf.Position = position;
+        newLeaf._next = new List<PlantBase>();
         newLeaf.RoundPriority = this.RoundPriority;
         newLeaf.ConnectedDirection = BitDirection.FromVector2(-direction);
         this.GetParent().AddChild(newLeaf);
@@ -89,7 +84,7 @@ public class Leaf : PlantBase, IRoundable, ISave {
             other._next.Add(stem);
     }
 
-    public void OnRoundFinish() {
+    public override void OnRoundFinish() {
         bool left = _leftCommand.Command;
         bool right = _rightCommand.Command;
         bool up = _upCommand.Command;
@@ -104,13 +99,9 @@ public class Leaf : PlantBase, IRoundable, ISave {
         this.self = this._replaceSelfByStem();
     }
 
-    public void OnRoundLateFinish() {
+    public override void OnRoundLateFinish() {
         _findNearbyStem(this.self);
         this.QueueFree();
-    }
-
-    public int GetRoundPriority() {
-        return this.RoundPriority;
     }
 
     private System.Object _checkOverlap(Vector2 position) {
@@ -120,8 +111,6 @@ public class Leaf : PlantBase, IRoundable, ISave {
             return null;
         return result["collider"];
     }
-
-    public void OnRoundStart() {}
 
     public override Dictionary<string, object> Save() {
         Dictionary<string, object> save = base.Save();

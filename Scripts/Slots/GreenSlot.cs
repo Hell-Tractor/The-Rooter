@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GreenSlot : SlotBase, ISave {
     protected override void OnLeafEnter(Leaf leaf) {
-        this._trigger.Trigger();
+        this._trigger?.Trigger();
         leaf.QueueFree();
         this.QueueFree();
     }
