@@ -1,6 +1,6 @@
 using Godot;
 
-public class AudioManager : Node2D {
+public class AudioManager : Node {
     public static AudioManager Instance { get; private set; } = null;
     [Export]
     public NodePath BGMPlayerPath;

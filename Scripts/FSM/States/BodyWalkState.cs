@@ -18,13 +18,14 @@ namespace AI.FSM
             PlayerFSM player = (fsm as PlayerFSM);
             if(player.GetOverlappingAreas().Count >= 1){
 			    player.grabPlant = player.GetOverlappingAreas()[0] as PlantBase;
+                GD.Print("grab success: ", player.grabPlant);
 		    }
             else {
                 player.grabPlant = null;
             }
         }
         public override void OnStateStay(FSMBase fsm)
-        {
+        {   
             base.OnStateStay(fsm);
             bool isLegal = true;
             Vector2 direction = Vector2.Zero;

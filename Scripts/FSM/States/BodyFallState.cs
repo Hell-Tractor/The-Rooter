@@ -29,7 +29,10 @@ namespace AI.FSM
             if(grabPlant == null) {
                 while(player.GetSurroundingNode(Vector2.Down * width * 2, 1) == null && player.GetSurroundingNode(Vector2.Down * width * 2, 2) == null) {
                     fallHeightCount++ ;
+                    GD.Print(fallHeightCount);
+                    GD.Print(player.GlobalPosition);
                     player.GlobalPosition += Vector2.Down * width;
+                    GD.Print(player.GlobalPosition);
                 }
                 player.GlobalPosition += Vector2.Down * width * fallHeightCount;
             }else {

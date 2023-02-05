@@ -10,18 +10,16 @@ namespace AI.FSM
         public int _width;
         public PlantBase grabPlant = null;
         public override void _Ready() {
-            GD.Print("start");
-            base._Ready();
-            
+            base._Ready();          
 		    Sprite sprite = this.GetNode<Sprite>("Sprite");
 		    this._width = Mathf.Abs((int)(sprite.Texture.GetWidth() * sprite.Scale.x * this.Scale.x));
 	    }
         public override void _Process(float delta)
         {
-            base._Process(delta);
+            base._Process(delta);/*
             if(this.GetOverlappingAreas().Count >= 1){
 			    grabPlant = this.GetOverlappingAreas()[0] as PlantBase;
-		    }
+		    }*/
             if(Input.IsActionJustPressed("undo")) {
                 UndoManager.Instance.Load();
             }
